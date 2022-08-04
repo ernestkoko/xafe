@@ -39,7 +39,7 @@ class LandingPage extends GetView<LandingPageController> {
               children: [
                 CustomButton(
                   "Login",
-                  onPressed: null,
+                  onPressed: controller.navigateToSignupPage,
                 ),
                 Space.Y(10),
                 Center(

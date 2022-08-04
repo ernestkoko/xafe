@@ -15,14 +15,17 @@ class CustomAppBar extends StatelessWidget implements PreferredSizeWidget {
 
       leading: IconButton(
         onPressed: onPressed,
-        icon: const Icon(Icons.arrow_back_ios_outlined),
+        icon: const Icon(Icons.arrow_back_ios_outlined, color: Colors.black,),
       ),
       title: title != null
-          ? Center(
-              child: Text(
-              title ?? '',
-              style: AppTextStyles.regular.copyWith(color: Colors.black),
-            ))
+          ? Padding(
+            padding: const EdgeInsets.only(right: 50),
+            child: Center(
+                child: Text(
+                title ?? '',
+                style: AppTextStyles.regular.copyWith(color: Colors.black, ),
+              )),
+          )
           : null,
     );
   }
