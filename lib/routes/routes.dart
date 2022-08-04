@@ -5,4 +5,5 @@
 
 abstract class AppRoutes{
   static const landingPage="/";
+  static const signupPage ="/signup_page";
 }
