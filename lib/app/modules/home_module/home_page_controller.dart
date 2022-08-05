@@ -18,5 +18,9 @@ class HomePageController extends GetxController{
   void navigateToAddSpending(){
 
   }
+  ///Navigate to budget page
+void navigateToBudgetPage(){
+    Get.toNamed(AppRoutes.budgetPage);
+}
 
 }

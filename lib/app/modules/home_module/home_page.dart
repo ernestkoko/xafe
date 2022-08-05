@@ -198,9 +198,9 @@ class HomePage extends GetView<HomePageController> {
                               child: InkWell(
                                 onTap: () {},
                                 child: Column(
-                                  children: const [
+                                  children:const  [
                                     Icon(Icons.home),
-                                    Text("Home")
+                                     Text("Home")
                                   ],
                                 ),
                               ),
@@ -211,8 +211,8 @@ class HomePage extends GetView<HomePageController> {
                                 onTap: () {},
                                 child: Column(
                                   children: const [
-                                    Icon(Icons.home),
-                                    Text("Home"),
+                                    Icon(Icons.search),
+                                    Text("Category"),
                                   ],
                                 ),
                               ),
@@ -220,11 +220,21 @@ class HomePage extends GetView<HomePageController> {
                             Space.X(20),
                             Material(
                               child: InkWell(
-                                onTap: () {},
+                                onTap: controller.navigateToBudgetPage,
                                 child: Column(
-                                  children: const [
-                                    Icon(Icons.home),
-                                    Text("Home")
+                                  children: [
+                                    Image.asset(
+                                      "assets/img/budget.png",
+                                      color: Colors.black,
+                                      errorBuilder: (ctx, o, trace) =>
+                                          const Icon(
+                                        Icons.error,
+                                        color: Colors.red,
+                                      ),
+                                      height: 20,
+                                      width: 20,
+                                    ),
+                                    Text("Budget")
                                   ],
                                 ),
                               ),
