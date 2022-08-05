@@ -1,21 +1,16 @@
 import 'package:get/get.dart';
 import 'package:xafe/routes/routes.dart';
 
-class HomePageController extends GetxController{
+class HomePageController extends GetxController {
+  onCreateClicked() {}
 
-  onCreateClicked(){
-
-  }
-
-  void navigateToAddExpense(){
+  void navigateToAddExpense() {
     Get.toNamed(AppRoutes.addExpensePage);
-
-  }
-  void navigateToCreateBudget(){
-
-  }
-  void navigateToAddSpending(){
-
   }
 
+  void navigateToCreateBudget() {
+    Get.toNamed(AppRoutes.createBudgetPage);
+  }
+
+  void navigateToAddSpending() {}
 }

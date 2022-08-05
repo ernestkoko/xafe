@@ -8,4 +8,5 @@ abstract class AppRoutes {
   static const signinPage = "/signin_page";
   static const homePage = "/home_page";
   static const addExpensePage = "/add_expense_page";
+  static const createBudgetPage ="/create_budget_page";
 }
