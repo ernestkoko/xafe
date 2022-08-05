@@ -4,16 +4,9 @@ import 'package:xafe/routes/routes.dart';
 class HomePageController extends GetxController {
   onCreateClicked() {}
 
-<<<<<<< HEAD
-  onCreateClicked(){
-
-  }
-
-  void navigateToAddExpense(){
-    Get.back();
-=======
   void navigateToAddExpense() {
->>>>>>> create_budget
+    Get.back();
+
     Get.toNamed(AppRoutes.addExpensePage);
   }
 
@@ -21,10 +14,11 @@ class HomePageController extends GetxController {
     Get.back();
     Get.toNamed(AppRoutes.createBudgetPage);
   }
+
   ///Navigate to budget page
-void navigateToBudgetPage(){
+  void navigateToBudgetPage() {
     Get.toNamed(AppRoutes.budgetPage);
-}
+  }
 
   void navigateToAddSpending() {}
 }
