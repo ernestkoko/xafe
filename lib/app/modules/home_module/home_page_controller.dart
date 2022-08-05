@@ -8,6 +8,7 @@ class HomePageController extends GetxController{
   }
 
   void navigateToAddExpense(){
+    Get.back();
     Get.toNamed(AppRoutes.addExpensePage);
 
   }
