@@ -1,4 +1,5 @@
 import 'package:get/get.dart';
+import 'package:xafe/routes/routes.dart';
 
 class HomePageController extends GetxController{
 
@@ -7,13 +8,14 @@ class HomePageController extends GetxController{
   }
 
   void navigateToAddExpense(){
+    Get.toNamed(AppRoutes.addExpensePage);
 
   }
   void navigateToCreateBudget(){
 
   }
   void navigateToAddSpending(){
-    
+
   }
 
 }
