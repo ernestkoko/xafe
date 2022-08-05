@@ -41,14 +41,11 @@ class SigninPage extends GetView<SigninPageController> {
                   Space.Y(6),
                   CustomTextField(
                     hintText: ".....",
-                    onIconPressed: (){
-
-                    },
+                    onIconPressed: () {},
                     icon: Image.asset(
                       "assets/img/eye.png",
                       width: 20,
                       height: 20,
-
                     ),
                   ),
                   Space.Y(15),
@@ -79,11 +76,14 @@ class SigninPage extends GetView<SigninPageController> {
                 ],
               ),
             ),
-            const Positioned(
+            Positioned(
               bottom: 2,
               left: 2,
               right: 2,
-              child: CustomButton("Login"),
+              child: CustomButton(
+                "Login",
+                onPressed: controller.navigateToHomePage,
+              ),
             ),
           ],
         ),

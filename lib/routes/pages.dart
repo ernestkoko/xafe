@@ -1,4 +1,6 @@
 import 'package:get/get.dart';
+import 'package:xafe/app/modules/home_module/home_page.dart';
+import 'package:xafe/app/modules/home_module/home_page_binding.dart';
 import 'package:xafe/app/modules/landing_module/landing_page.dart';
 import 'package:xafe/app/modules/landing_module/landing_page_binding.dart';
 import 'package:xafe/app/modules/sign_up_module/sign_up_page.dart';
@@ -18,8 +20,13 @@ abstract class AppPages {
         page: () => SignUpPage(),
         binding: SignupPageBinding()),
     GetPage(
-        name: AppRoutes.signinPage,
-        page: () => SigninPage(),
-        binding: SigninPageBinding()),
+      name: AppRoutes.signinPage,
+      page: () => SigninPage(),
+      binding: SigninPageBinding(),
+    ),
+    GetPage(
+        name: AppRoutes.homePage,
+        page: () => HomePage(),
+        binding: HomePageBinding())
   ];
 }
