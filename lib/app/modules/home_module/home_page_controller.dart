@@ -9,6 +9,7 @@ class HomePageController extends GetxController {
   }
 
   void navigateToCreateBudget() {
+    Get.back();
     Get.toNamed(AppRoutes.createBudgetPage);
   }
 

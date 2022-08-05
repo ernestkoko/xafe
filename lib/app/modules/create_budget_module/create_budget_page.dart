@@ -14,7 +14,7 @@ class CreateBudgetPage extends GetView<CreateBudgetPageController> {
   @override
   Widget build(BuildContext context) {
     return Scaffold(
-      appBar: const CustomAppBar(),
+      appBar:  CustomAppBar(onPressed: controller.popPage,),
       body: Container(
         padding: const EdgeInsets.all(10),
         height: Get.height,
