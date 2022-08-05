@@ -1,6 +1,8 @@
 import 'package:get/get.dart';
 import 'package:xafe/app/modules/add_expense_module/add_expense_page.dart';
 import 'package:xafe/app/modules/add_expense_module/add_expense_page_binding.dart';
+import 'package:xafe/app/modules/budget_module/budget_page.dart';
+import 'package:xafe/app/modules/budget_module/budget_page_binding.dart';
 import 'package:xafe/app/modules/create_budget_module/create_budget_page.dart';
 import 'package:xafe/app/modules/create_budget_module/create_budget_page_binding.dart';
 import 'package:xafe/app/modules/home_module/home_page.dart';
@@ -37,6 +39,11 @@ abstract class AppPages {
       name: AppRoutes.addExpensePage,
       page: () => AddExpensePage(),
       binding: AddExpensePageBinding(),
+    ),
+    GetPage(
+      name: AppRoutes.budgetPage,
+      page: () => BudgetPage(),
+      binding: BudgetPageBinding(),
     ),
     GetPage(
       name: AppRoutes.createBudgetPage,

@@ -5,9 +5,8 @@ class HomePageController extends GetxController {
   onCreateClicked() {}
 
 
-  
+  void navigateToAddExpense() {
 
-  void navigateToAddExpense(){
     Get.back();
 
     Get.toNamed(AppRoutes.addExpensePage);
@@ -16,6 +15,11 @@ class HomePageController extends GetxController {
   void navigateToCreateBudget() {
     Get.back();
     Get.toNamed(AppRoutes.createBudgetPage);
+  }
+
+  ///Navigate to budget page
+  void navigateToBudgetPage() {
+    Get.toNamed(AppRoutes.budgetPage);
   }
 
   void navigateToAddSpending() {}
