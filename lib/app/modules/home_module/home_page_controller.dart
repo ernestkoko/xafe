@@ -4,7 +4,12 @@ import 'package:xafe/routes/routes.dart';
 class HomePageController extends GetxController {
   onCreateClicked() {}
 
-  void navigateToAddExpense() {
+
+  
+
+  void navigateToAddExpense(){
+    Get.back();
+
     Get.toNamed(AppRoutes.addExpensePage);
   }
 
