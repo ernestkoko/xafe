@@ -14,15 +14,15 @@ class CreateBudgetPage extends GetView<CreateBudgetPageController> {
   @override
   Widget build(BuildContext context) {
     return Scaffold(
-      appBar:  CustomAppBar(onPressed: controller.popPage,),
+      appBar: CustomAppBar(
+        onPressed: controller.popPage,
+      ),
       body: Container(
         padding: const EdgeInsets.all(10),
         height: Get.height,
         child: Stack(
-        
           children: [
             Positioned(
-
               child: ListView(
                 shrinkWrap: true,
                 //crossAxisAlignment: CrossAxisAlignment.start,
@@ -32,12 +32,16 @@ class CreateBudgetPage extends GetView<CreateBudgetPageController> {
                     style: AppTextStyles.regularBold.copyWith(fontSize: 24),
                   ),
                   Space.Y(15),
-                  const CustomTextField(
+                  CustomTextField(
                     hintText: "Budget name",
+                    keyboardType: TextInputType.name,
+                    onChanged: (text) => controller.onNameChanged(text),
                   ),
                   Space.Y(8),
-                  const CustomTextField(
+                  CustomTextField(
                     hintText: "Budget amount",
+                    keyboardType: TextInputType.number,
+                    onChanged: (text) => controller.onAmountChanged(text),
                   ),
                   Space.Y(8),
                   CustomTextField(
@@ -53,11 +57,24 @@ class CreateBudgetPage extends GetView<CreateBudgetPageController> {
                 ],
               ),
             ),
-            const Positioned(
+            Positioned(
               bottom: 2,
               left: 0,
               right: 0,
-              child: CustomButton("Create budget"),
+              child: Obx(() => CustomButton(
+                    "Create budget",
+                    onPressed: () async {
+                      try {
+                        controller.createBudget();
+                        Get.snackbar("Budget", "Created successfully!");
+                      } catch (error) {
+                        Get.snackbar("Error", "Could not create!",
+                            colorText: Colors.red);
+                      }
+                    },
+                    loading: controller.loading.value,
+                    indicatorColor: Colors.white,
+                  )),
             )
           ],
         ),

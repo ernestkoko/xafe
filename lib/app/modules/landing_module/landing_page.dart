@@ -39,12 +39,11 @@ class LandingPage extends GetView<LandingPageController> {
               children: [
                 CustomButton(
                   "Login",
-                  onPressed: controller.navigateToSignupPage,
+                  onPressed: controller.navigateToSigninPage,
                 ),
                 Space.Y(10),
-                Center(
-                    child: GestureDetector(
-                  onTap: controller.navigateToSignupPage,
+                TextButton(
+                  onPressed: controller.navigateToSignupPage,
                   child: RichText(
                     text: TextSpan(
                         text: "New here? ",
@@ -57,7 +56,23 @@ class LandingPage extends GetView<LandingPageController> {
                                   .copyWith(color: Colors.white))
                         ]),
                   ),
-                )),
+                ),
+                // Center(
+                //     child: GestureDetector(
+                //   onTap: controller.navigateToSignupPage,
+                //   child: RichText(
+                //     text: TextSpan(
+                //         text: "New here? ",
+                //         style:
+                //             AppTextStyles.regular.copyWith(color: Colors.white),
+                //         children: [
+                //           TextSpan(
+                //               text: "Create account",
+                //               style: AppTextStyles.regularBold
+                //                   .copyWith(color: Colors.white))
+                //         ]),
+                //   ),
+                // )),
                 Space.Y(30),
                 Center(
                   child: Container(

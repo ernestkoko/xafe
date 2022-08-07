@@ -1,4 +1,3 @@
-import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
 import 'package:get/get.dart';
 import 'package:xafe/app/modules/signin_module/custom_text_field.dart';
@@ -15,11 +14,11 @@ class SigninPage extends GetView<SigninPageController> {
   @override
   Widget build(BuildContext context) {
     return Scaffold(
-      appBar: CustomAppBar(
+      appBar: const CustomAppBar(
         onPressed: null,
       ),
       body: Container(
-        margin: EdgeInsets.all(15),
+        margin: const EdgeInsets.all(15),
         child: Stack(
           children: [
             Positioned(
@@ -36,10 +35,12 @@ class SigninPage extends GetView<SigninPageController> {
                   ),
                   Space.Y(10),
                   CustomTextField(
+                    onChanged: (text) => controller.onEmailChanged(text),
                     hintText: "email address",
                   ),
                   Space.Y(6),
                   CustomTextField(
+                    onChanged: (text) => controller.onPasswordChanged(text),
                     hintText: ".....",
                     onIconPressed: () {},
                     icon: Image.asset(
@@ -80,9 +81,21 @@ class SigninPage extends GetView<SigninPageController> {
               bottom: 2,
               left: 2,
               right: 2,
-              child: CustomButton(
-                "Login",
-                onPressed: controller.navigateToHomePage,
+              child: Obx(
+                () => CustomButton(
+                  "Login",
+                  loading: controller.loading.value,
+                  indicatorColor: Colors.white,
+                  onPressed: () async {
+                    try {
+                      await controller.navigateToHomePage();
+                      Get.snackbar("Sign in", "successfully!");
+                    } catch (error) {
+                      Get.snackbar("Error", error.toString(),
+                          colorText: Colors.red);
+                    }
+                  },
+                ),
               ),
             ),
           ],

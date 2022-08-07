@@ -1,7 +1,7 @@
 import 'package:flutter/material.dart';
 import 'package:get/get.dart';
 import 'package:xafe/app/modules/home_module/home_page_controller.dart';
-import 'package:xafe/app/modules/home_module/widgets/bottom_sheet_item.dart';
+import 'package:xafe/app/widgets/bottom_sheet_item.dart';
 import 'package:xafe/app/modules/home_module/widgets/custom_analyses.dart';
 import 'package:xafe/app/widgets/custom_line.dart';
 import 'package:xafe/core/theme/text_styles.dart';
