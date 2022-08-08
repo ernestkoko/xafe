@@ -8,7 +8,7 @@ import './budget_page_controller.dart';
 import '../../widgets/custom_line.dart';
 
 class BudgetPage extends GetView<BudgetPageController> {
-  const BudgetPage({Key? key}) : super(key: key);
+  BudgetPage({Key? key}) : super(key: key);
 
   @override
   Widget build(BuildContext context) {
@@ -42,56 +42,88 @@ class BudgetPage extends GetView<BudgetPageController> {
                 right: 0,
                 child: Container(
                   padding: const EdgeInsets.symmetric(horizontal: 19),
-                  child: GridView.builder(
-                      shrinkWrap: true,
-                      itemCount: 20,
-                      gridDelegate:
-                          const SliverGridDelegateWithFixedCrossAxisCount(
-                              crossAxisCount: 2, childAspectRatio: 1.5),
-                      itemBuilder: (context, index) {
-                        if (index == 19) {
+                  child: controller.obx(
+                    (data) => GridView.builder(
+                        shrinkWrap: true,
+                        itemCount: data!.length + 1,
+                        gridDelegate:
+                            const SliverGridDelegateWithFixedCrossAxisCount(
+                                crossAxisCount: 2, childAspectRatio: 1.5),
+                        itemBuilder: (context, index) {
+                          if (index + 1 == data.length + 1) {
+                            return GestureDetector(
+                              onTap: controller.navigateToNewBudget,
+                              child: Card(
+                                shape: const RoundedRectangleBorder(
+                                    borderRadius: BorderRadius.all(
+                                  Radius.circular(12),
+                                )),
+                                color: Colors.white.withOpacity(0.5),
+                                child: const Center(child: Icon(Icons.add)),
+                              ),
+                            );
+                          }
+
                           return GestureDetector(
                             onTap: () {
-                              print("New budget clicked");
+                              controller
+                                  .navigateToBudgetDetailsPage(data[index]);
                             },
                             child: Card(
                               shape: const RoundedRectangleBorder(
                                   borderRadius: BorderRadius.all(
                                 Radius.circular(12),
                               )),
-                              color: Colors.white.withOpacity(0.5),
-                              child: const Center(child: Icon(Icons.add)),
+                              child: Padding(
+                                padding: const EdgeInsets.all(10.0),
+                                child: Column(
+                                  mainAxisAlignment:
+                                      MainAxisAlignment.spaceEvenly,
+                                  crossAxisAlignment: CrossAxisAlignment.start,
+                                  mainAxisSize: MainAxisSize.min,
+                                  children: [
+                                    Text(data[index].budgetName),
+                                    Text("\$${data[index].budgetAmount}/month"),
+                                    Padding(
+                                      padding: const EdgeInsets.all(8.0),
+                                      child: CustomLine(
+                                        width: index / 20 * 100,
+                                        height: 5,
+                                        color: Colors.red,
+                                      ),
+                                    )
+                                  ],
+                                ),
+                              ),
                             ),
                           );
-                        }
-
-                        return Card(
-                          shape: const RoundedRectangleBorder(
-                              borderRadius: BorderRadius.all(
-                            Radius.circular(12),
-                          )),
-                          child: Padding(
-                            padding: const EdgeInsets.all(10.0),
+                        }),
+                    onLoading: const Center(
+                        child: CircularProgressIndicator(
+                      color: Colors.white,
+                    )),
+                    onEmpty: GestureDetector(
+                      onTap: controller.navigateToNewBudget,
+                      child: Card(
+                        shape: const RoundedRectangleBorder(
+                            borderRadius: BorderRadius.all(
+                          Radius.circular(12),
+                        )),
+                        color: Colors.white.withOpacity(0.5),
+                        child: Center(
                             child: Column(
-                              mainAxisAlignment: MainAxisAlignment.spaceEvenly,
-                              crossAxisAlignment: CrossAxisAlignment.start,
-                              mainAxisSize: MainAxisSize.min,
-                              children: [
-                                Text("Groceries"),
-                                Text("\$$index/month"),
-                                Padding(
-                                  padding: const EdgeInsets.all(8.0),
-                                  child: CustomLine(
-                                    width: index / 20 * 100,
-                                    height: 5,
-                                    color: Colors.red,
-                                  ),
-                                )
-                              ],
-                            ),
-                          ),
-                        );
-                      }),
+                              mainAxisAlignment: MainAxisAlignment.center,
+                          children:const  [
+                             Text("Click here to add new budget"),
+                            Center(child: Icon(Icons.add))
+                          ],
+                        )),
+                      ),
+                    ),
+                    onError: (error) => const Center(
+                      child: Text("Error occurred"),
+                    ),
+                  ),
                 )),
             Positioned(
                 bottom: 0,
@@ -108,12 +140,15 @@ class BudgetPage extends GetView<BudgetPageController> {
                         mainAxisAlignment: MainAxisAlignment.spaceEvenly,
                         children: [
                           Space.X(10),
-                          Column(
-                            children: const [
-                              CustomImageAsset(
-                                  assetLink: "assets/img/home.png"),
-                              Text("Home"),
-                            ],
+                          GestureDetector(
+                            onTap: controller.navigateToHomePage,
+                            child: Column(
+                              children: const [
+                                CustomImageAsset(
+                                    assetLink: "assets/img/home.png"),
+                                Text("Home"),
+                              ],
+                            ),
                           ),
                           // Space.X(10),
                           Column(

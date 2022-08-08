@@ -1,12 +1,23 @@
 import 'package:get/get.dart';
-import 'package:xafe/routes/routes.dart';
+import 'package:xafe/app/modules/sign_up_module/sign_up_page_provider.dart';
+
+import '../../../routes/routes.dart';
 
 enum SignupFormState { name, email, code, password }
 
 class SignupPageController extends GetxController {
+  SignupPageController(this._provider);
+
+  final SignUpPageProvider _provider;
+
   final signupFormState = SignupFormState.name.obs;
   final formTitle = "".obs;
   final formHint = "".obs;
+  final _email = "".obs;
+  final _password = ''.obs;
+  final _name = ''.obs;
+
+  final loading = false.obs;
 
   @override
   void onInit() {
@@ -21,7 +32,41 @@ class SignupPageController extends GetxController {
     formHint.value = "Enter your first and last name";
   }
 
-  void onNextClicked() {
+  onTextChanged(String text) {
+    print(text);
+    switch (signupFormState.value) {
+      case SignupFormState.name:
+        _name.value = text;
+        break;
+
+      case SignupFormState.email:
+        _email.value = text;
+        break;
+
+      case SignupFormState.code:
+        break;
+
+      case SignupFormState.password:
+        _password.value = text;
+        break;
+    }
+  }
+
+  Future<void> signUpWithEmailAndPassword() async {
+    loading.value = true;
+    try {
+      await _provider.signupWithEmailAndPassword(
+          email: _email.value, password: _password.value);
+      loading.value = false;
+      //navigates
+      Get.offAndToNamed(AppRoutes.homePage);
+    } catch (error) {
+      print(error);
+      loading.value = false;
+    }
+  }
+
+  void onNextClicked() async {
     switch (signupFormState.value) {
       case SignupFormState.name:
         {
@@ -43,8 +88,11 @@ class SignupPageController extends GetxController {
         break;
       case SignupFormState.password:
         {
-          //navigate
-          Get.toNamed(AppRoutes.signinPage);
+          try {
+            await signUpWithEmailAndPassword();
+          } catch (error) {
+
+          }
         }
         break;
     }

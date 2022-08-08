@@ -12,5 +12,6 @@ abstract class AppRoutes {
   static const budgetPage = '/budget_page';
 
   static const createBudgetPage ="/create_budget_page";
+  static const budgetDetailsPage ="/budget_details_page";
 
 }

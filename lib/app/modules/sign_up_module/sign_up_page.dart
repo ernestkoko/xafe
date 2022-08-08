@@ -33,11 +33,14 @@ class SignUpPage extends GetView<SignupPageController> {
                 ),
                 Obx(
                   () => TextField(
-                    keyboardType: TextInputType.text,
+                    key: GlobalKey(),
+                    keyboardType:
+                        _keyInputType(controller.signupFormState.value),
                     decoration: InputDecoration(
                       border: InputBorder.none,
                       hintText: controller.formHint.value,
                     ),
+                    onChanged: controller.onTextChanged,
                   ),
                 ),
               ],
@@ -59,10 +62,14 @@ class SignUpPage extends GetView<SignupPageController> {
                     parentWidth: Get.width,
                   ),
                   Space.Y(16),
-                  CustomButton(
-                    'Next',
-                    onPressed: controller.onNextClicked,
-                  )
+                  Obx(
+                    () => CustomButton(
+                      'Next',
+                      indicatorColor: Colors.white,
+                      loading: controller.loading.value,
+                      onPressed: controller.onNextClicked,
+                    ),
+                  ),
                 ],
               ),
             ),
@@ -70,5 +77,33 @@ class SignUpPage extends GetView<SignupPageController> {
         ]),
       ),
     );
+  }
+
+  TextInputType _keyInputType(SignupFormState formState) {
+    var type = TextInputType.text;
+    switch (formState) {
+      case SignupFormState.name:
+        {
+          type = TextInputType.text;
+        }
+        break;
+      case SignupFormState.email:
+        {
+          type = TextInputType.emailAddress;
+        }
+        break;
+      case SignupFormState.code:
+        {
+          type = TextInputType.number;
+        }
+        break;
+      case SignupFormState.password:
+        {
+          type = TextInputType.visiblePassword;
+        }
+        break;
+    }
+
+    return type;
   }
 }

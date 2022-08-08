@@ -5,9 +5,10 @@ class CustomButton extends StatelessWidget {
   final String title;
   final Function()? onPressed;
   final bool loading;
+  final Color? indicatorColor;
 
   const CustomButton(this.title,
-      {Key? key, this.onPressed, this.loading = false})
+      {Key? key, this.onPressed, this.loading = false, this.indicatorColor})
       : super(key: key);
 
   @override
@@ -15,7 +16,7 @@ class CustomButton extends StatelessWidget {
     return Container(
       height: 50,
       child: ElevatedButton(
-        onPressed: onPressed,
+        onPressed: loading ? null : onPressed,
         style: ButtonStyle(
           backgroundColor:
               MaterialStateProperty.all<Color>(Get.theme.primaryColor),
@@ -27,10 +28,14 @@ class CustomButton extends StatelessWidget {
         ),
         child: Padding(
           padding: const EdgeInsets.all(10),
-          child: Text(
-            title,
-            style:const  TextStyle(color: Colors.white),
-          ),
+          child: loading
+              ? CircularProgressIndicator(
+                  color: indicatorColor!,
+                )
+              : Text(
+                  title,
+                  style: const TextStyle(color: Colors.white),
+                ),
         ),
       ),
     );

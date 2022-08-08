@@ -5,13 +5,17 @@ class CustomContainer extends StatelessWidget {
   final Color? childColor;
   final double? childWidth;
   final double? parentWidth;
+  final double? height;
+  final bool? innerCurve;
 
   const CustomContainer(
       {Key? key,
       this.backgroundColor,
       this.childColor,
       this.childWidth,
-      this.parentWidth})
+      this.parentWidth,
+      this.height,
+      this.innerCurve})
       : super(key: key);
 
   @override
@@ -19,7 +23,7 @@ class CustomContainer extends StatelessWidget {
     return Stack(children: [
       Container(
         width: parentWidth,
-        height: 15,
+        height: height ?? 15,
         decoration: ShapeDecoration(
           color: backgroundColor,
           shape: RoundedRectangleBorder(
@@ -29,13 +33,21 @@ class CustomContainer extends StatelessWidget {
       ),
       Container(
         width: childWidth,
-        height: 15,
+        height: height ?? 15,
         alignment: Alignment.centerLeft,
         decoration: ShapeDecoration(
           color: childColor,
-          shape: const RoundedRectangleBorder(
+          shape: RoundedRectangleBorder(
             borderRadius: BorderRadius.only(
-                topLeft: Radius.circular(10), bottomLeft: Radius.circular(10)),
+              topLeft: const Radius.circular(10),
+              bottomLeft: const Radius.circular(10),
+              topRight: innerCurve != null && innerCurve == true
+                  ? const Radius.circular(10)
+                  : const Radius.circular(0),
+              bottomRight: innerCurve != null && innerCurve == true
+                  ? const Radius.circular(10)
+                  : const Radius.circular(0),
+            ),
           ),
         ),
       ),

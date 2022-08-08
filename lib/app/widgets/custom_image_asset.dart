@@ -9,7 +9,7 @@ class CustomImageAsset extends StatelessWidget {
   Widget build(BuildContext context) {
     return Image.asset(
       assetLink,
-      height: 15,width: 15,
+      height: 20,width: 20,
       errorBuilder: (ctx, o, trace) => const Icon(Icons.error, color: Colors.red,),
     );
   }
